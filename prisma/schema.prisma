@@ -34,3 +34,9 @@ model messageCrossPost {
   guildId        String   @id @map("_id")
   channelIds   String[]
 }
+
+model AutoTag {
+  guildId        String   @id @map("_id")
+  roleId   String
+  channelId   String
+}
