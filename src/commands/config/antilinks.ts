@@ -42,7 +42,7 @@ export default class GuildCommand extends SubCommand {
         }
 
         await ctx.client.db.prisma.antilink.upsert({ where: { guildId: ctx.guildId }, update: { RolesExceptions: ArrRoles, MembersExceptions: ArrMembers }, create: { guildId: ctx.guildId, MembersExceptions: ArrMembers , RolesExceptions: ArrRoles, } });
-        return ctx.write({ content: `Excepciones de Antilinks \n se ha añadido a ${member ? `<@${exception.id}>` : `<@&${exception.id}>`}` });
+        return ctx.write({ content: `Excepciones de Antilinks \n se ha ${value === "add" ? "añadido" : "eliminado"} a ${member ? `<@${exception.id}>` : `<@&${exception.id}>`}` });
 
     }
 }

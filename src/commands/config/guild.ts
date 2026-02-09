@@ -9,7 +9,8 @@ const options = {
       { name: "ThreadLinkFilter", value: 0 },
       { name: "AntiLinkFilter", value: 1 },
       { name: "BadBotsFilter", value: 2 },
-      { name: "BadMemberFilter", value: 3 }
+      { name: "BadMemberFilter", value: 3 },
+      { name: "MentionBot", value: 4 }
     ]
   }),
   value: createBooleanOption({ description: "Config Value", required: true })
