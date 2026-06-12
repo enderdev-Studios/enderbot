@@ -1,4 +1,4 @@
-import { antilinkFilter, autoTagMessage, crossPostMessage, mentionMessage } from "#enderbot/utils/functions/EventsLogic.js";
+import { antilinkFilter, autoTagMessage, crossPostMessage, mentionMessage, MrBeastDetectMessage } from "#enderbot/utils/functions/EventsLogic.js";
 import { createEvent } from "seyfert";
 
 export default createEvent({
@@ -15,6 +15,8 @@ export default createEvent({
 			await antilinkFilter({ guildData: ConfigGuildData, antilinkData: AntilinkData, message, client });
 			await mentionMessage({ guildData: ConfigGuildData, message, client });
 			await crossPostMessage({ crossPostData, message, channel });
+			await MrBeastDetectMessage({ message });
+			
 			
 			// Catch errors
 		} catch (error) { client.logger.error(error); }
