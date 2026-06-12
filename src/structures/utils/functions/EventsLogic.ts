@@ -1,11 +1,11 @@
+import { Message } from "seyfert";
 import { ConfigFlags } from "../constants/ConfigFlags.js";
-
-
 export {
     antilinkFilter,
     autoTagMessage,
     crossPostMessage,
-    mentionMessage
+    mentionMessage,
+    MrBeastDetectMessage
 };
 const link = /(https?:\/\/)?(www|yout\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]/g;
 
@@ -18,7 +18,7 @@ async function antilinkFilter({ guildData, antilinkData, message, client }) {
     if (!link.test(message.content) || message.content.match(".destroy") || message.content.match("@everyone")) return 0;
     // Delete message and notify user
     if (guildData.channelId) await client.messages.write(guildData.channelId, { content: `Mensaje con link eliminado de ${message.author.tag} en ${message.guild?.name}` });
-    message.write({ content: "Hola por favor no mandes links" }).then(m => { setTimeout(async () => { await m.delete(); }, 4000); });
+    message.write({ content: "Hola por favor no mandes links" }).then(m => { globalThis.setTimeout(async () => { await m.delete(); }, 4000); });
     await message.delete();
 }
 function mentionMessage({ guildData, message, client }) {
@@ -42,4 +42,17 @@ function crossPostMessage({ crossPostData, message, channel }) {
     if (!crossPostData.channelIds.includes(channel.id) && !channel.isNews()) return;
     message.crosspost();
 
+}
+
+async function MrBeastDetectMessage({ message }: { message: Message }) {
+    message.attachments.values().forEach(attachment => { 
+        if (attachment.filename.toLowerCase().includes("image.jpg")) {
+            message.delete();
+            try {
+                message.member?.ban({ }, "MrBeast Detect");
+            } catch (error) {
+                globalThis.console.log(error);
+            }
+        }
+    });
 }
