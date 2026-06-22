@@ -5,7 +5,7 @@ export {
     autoTagMessage,
     crossPostMessage,
     mentionMessage,
-    MrBeastDetectMessage
+    HoneyPotChannel
 };
 const link = /(https?:\/\/)?(www|yout\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]/g;
 
@@ -44,15 +44,13 @@ function crossPostMessage({ crossPostData, message, channel }) {
 
 }
 
-async function MrBeastDetectMessage({ message }: { message: Message }) {
-    message.attachments.values().forEach(attachment => { 
-        if (attachment.filename.toLowerCase().includes("image.jpg")) {
-            message.delete();
-            try {
-                message.member?.ban({ }, "MrBeast Detect");
-            } catch (error) {
-                globalThis.console.log(error);
-            }
-        }
-    });
+async function HoneyPotChannel({ message }: { message: Message }) {
+    if (message.channelId == "1518593420711432326") {
+        message.member?.ban({ delete_message_seconds: 60 * 60 * 24 * 7 }, "HoneyPot Channel");
+
+        const messageToEdit = await message.client.messages.fetch("1518719940058939574", "1518593420711432326", true);
+        const number = Number(messageToEdit.content.match(/\d+/g)?.[0]) || 0;
+
+        await message.client.messages.edit(messageToEdit.id, "1518593420711432326", { content: `Bots Banned: ${number + 1}` });
+    }
 }
