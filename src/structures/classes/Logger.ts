@@ -16,7 +16,6 @@ export function customLog(_this: Logger, level: LogLevels | LoggerLevel, args: u
         ["[ CHECK ]", LoggerColor.checkLogger],
     ];
     const color = name[level][1] as string;
-
     const text = `${chalk.italic(`${memoryData}`)} ${chalk.bold.hex(color)(`${name[level][0]}`)}`;
 
     return [text, ...args];

@@ -4,8 +4,8 @@ import { Categories, enderbotConfigType } from "#enderbot/types";
 import { enderbotHCmd } from "./classes/enderbot/handleCmd.js";
 import { middlewares } from "./utils/utils/Middlewares.js";
 import { onRunError, onOptionsError, onBotPermissionsFail, onPermissionsFail } from "./utils/functions/defaults.js";
-import ms from "ms";
 import { enderbotDatabase } from "./classes/enderbot/enderbotDB.js";
+import ms from "ms";
 
 export class enderbot extends Client<true> {
     db: enderbotDatabase = new enderbotDatabase(this);
@@ -33,10 +33,10 @@ export class enderbot extends Client<true> {
                 }),disabledCache: { voiceStates: true, stageInstances: true, stickers: true, emojis: true } }});
         await this.start();
         await this.uploadCommands();
-        this.logger.info("Already nice");
+        this.logger.info("Already nicely uploaded all commands, events and components.");
     }
     async reload() {
-        await this.logger.warn("Ok Ok esto es hard reload de todo");
+        await this.logger.warn("Reloading all commands, events and components...");
         try {
             await this.commands?.reloadAll();
             await this.uploadCommands();
@@ -45,7 +45,7 @@ export class enderbot extends Client<true> {
             await this.commands?.reloadAll();
         } catch (e) {
             this.logger.error(e);
-            this.logger.info("No hay servicio intentalo mas tarde");
+            this.logger.info("Something was wrong while reloading, please check the error above.");
         }
     }
 }

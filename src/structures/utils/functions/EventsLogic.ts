@@ -1,5 +1,6 @@
 import { Message } from "seyfert";
-import { ConfigFlags } from "../constants/ConfigFlags.js";
+import { ConfigFlags } from "#enderbot/utils/constants/ConfigFlags.js";
+
 export {
     antilinkFilter,
     autoTagMessage,
@@ -7,6 +8,7 @@ export {
     mentionMessage,
     HoneyPotChannel
 };
+
 const link = /(https?:\/\/)?(www|yout\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]/g;
 
 async function antilinkFilter({ guildData, antilinkData, message, client }) {
@@ -46,7 +48,6 @@ function crossPostMessage({ crossPostData, message, channel }) {
 
 async function HoneyPotChannel({ message }: { message: Message }) {
     if (message.channelId === "1518593420711432326") {
-        message.client.logger.info("HoneyPot Channel Detected");
         try {
             message.member?.ban({ delete_message_seconds: 60 * 60 * 24 * 7 }, "HoneyPot Channel");
             const messageToEdit = await message.client.messages.fetch("1518719940058939574", "1518593420711432326", true);

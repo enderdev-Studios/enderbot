@@ -1,6 +1,6 @@
 import { SubCommand, type CommandContext,  createStringOption, createUserOption, Declare, Middlewares, Options } from "seyfert";
-import ms from "ms";
 import { Watch, Yuna } from "yunaforseyfert";
+import ms from "ms";
 
 const options = {
   user: createUserOption({ description: "get a user", required: true }),

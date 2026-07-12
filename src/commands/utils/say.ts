@@ -1,6 +1,6 @@
 import { SubCommand, CommandContext, createStringOption, Declare, Middlewares, Options } from "seyfert";
-import { Shortcut, Watch, Yuna } from "yunaforseyfert";
 import { MessageFlags } from "seyfert/lib/types/index.js";
+import { Shortcut, Watch, Yuna } from "yunaforseyfert";
 import ms from "ms";
 
 // Define options for the command

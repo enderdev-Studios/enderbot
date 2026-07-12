@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
 import { enderbot } from "#enderbot/client";
 import { middlewares } from "#enderbot/utils/utils/Middlewares.js";
 import { ParseClient, ParseMiddlewares } from "seyfert";

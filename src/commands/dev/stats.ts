@@ -1,7 +1,7 @@
-import { Categories } from "#enderbot/types";
+import { Declare, Command, type CommandContext,  Middlewares, Embed } from "seyfert";
 import { SeyfertVersion, typescriptVersion, PrismaVersion } from "#enderbot/utils/constants/Constants.js";
 import { cpuUsage, memoryUsage } from "#enderbot/utils/functions/functions.js";
-import { Declare, Command, type CommandContext,  Middlewares, Embed } from "seyfert";
+import { Categories } from "#enderbot/types";
 
 @Declare({
   name: "botstats",

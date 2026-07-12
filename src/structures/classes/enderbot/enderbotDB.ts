@@ -19,18 +19,18 @@ export class enderbotDatabase {
      async connect() {
         try {
             await this.prisma.$connect();
-            this.client.logger.info("Database connected successfully.");
+            this.client.logger.info("Database connected successfully");
         } catch (error) {
-            this.client.logger.fatal("Error connecting to the database:", error);
+            this.client.logger.fatal("Error connecting to the database: ", error);
         }
     }
 
     async disconnect() {
         try {
             await this.prisma.$disconnect();
-            this.client.logger.info("Database disconnected successfully.");
+            this.client.logger.info("Database disconnected successfully");
         } catch (error) {
-            this.client.logger.fatal("Error disconnecting from the database:", error);
+            this.client.logger.fatal("Error disconnecting from the database: ", error);
         }
     }
 }

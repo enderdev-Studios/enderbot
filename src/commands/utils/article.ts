@@ -1,7 +1,7 @@
-import { HexColor } from "#enderbot/utils/functions/functions.js";
 import { Declare, type CommandContext, Middlewares, createStringOption, Options, Container, Separator, TextDisplay, Section, SubCommand, Thumbnail } from "seyfert";
 import { Spacing, MessageFlags, } from "seyfert/lib/types/index.js";
 import { Shortcut } from "yunaforseyfert";
+import { HexColor } from "#enderbot/utils/functions/functions.js";
 
 const options = {
     title: createStringOption({ description: "Escribe el titulo de tu articulo", required: true }),

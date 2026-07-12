@@ -14,11 +14,8 @@
 
 		"removeComments": true,
 		"noEmitOnError": true,
-		"allowSyntheticDefaultImports": true,
 		"noImplicitOverride": true,
-        "esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
-		"strict": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
@@ -30,18 +27,21 @@
         // Path Config
 
 		"outDir": "./dist",
-		"baseUrl": "./",
 		"rootDir": "./src",
 		"paths": {
 			"#enderbot/types": ["./src/enderbot.ts"],
 			"#enderbot/client": ["./src/structures/Client.ts"],
 			"#enderbot/errors": ["./src/structures/classes/Errors.ts"],
-			"#enderbot/functions/*": ["src/structures/utils/functions/*"],
+			"#enderbot/functions/*": ["./src/structures/utils/functions/*"],
 			"#enderbot/utils/*": ["./src/structures/utils/*"],
 			"#enderbot/classes/*": ["./src/structures/classes/*"],
 			"#enderbot/middlewares/*": ["./src/middlewares/*"],
 			"#enderbot/prisma": ["./generated/prisma/index"],
-		}
+		},
+
+		// types
+
+		"types": ["node"]
 	},
 	"include": [
 		"./src/**/*",

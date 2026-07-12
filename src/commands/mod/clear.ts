@@ -1,6 +1,6 @@
-import ms from "ms";
 import { type CommandContext, Declare, SubCommand,Options, TextGuildChannel,createIntegerOption,Middlewares, Embed,} from "seyfert";
 import { Shortcut, Watch, Yuna } from "yunaforseyfert";
+import ms from "ms";
 
 const options = {
     cantidad: createIntegerOption({

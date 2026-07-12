@@ -1,8 +1,8 @@
+import { type CommandContext, createUserOption, Declare, SubCommand, Options, Embed, Middlewares, } from "seyfert";
+import { Shortcut, Watch, Yuna } from "yunaforseyfert";
 import { Categories } from "#enderbot/types";
 import { sendMessage } from "#enderbot/utils/functions/functions.js";
 import ms from "ms";
-import { type CommandContext, createUserOption, Declare, SubCommand, Options, Embed, Middlewares, } from "seyfert";
-import { Shortcut, Watch, Yuna } from "yunaforseyfert";
 
 const options = { user: createUserOption({ description: "get a user" }) }; // Define options
 

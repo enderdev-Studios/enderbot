@@ -7,8 +7,7 @@ export class enderbotHCmd extends HandleCommand implements HandleCommand {
             namedOptions: ["-"],
         },
     });
-
-  override resolveCommandFromContent = Yuna.resolver({
+    override resolveCommandFromContent = Yuna.resolver({
       client: this.client,
       afterPrepare: (metadata) => {
           this.client.logger.debug(`Ready to use ${metadata.commands.length} commands !`);

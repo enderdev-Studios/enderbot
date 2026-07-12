@@ -2,18 +2,18 @@ import { Command, type CommandContext, Declare, Embed, Middlewares, Options, cre
 import { EmbedColors, Formatter } from "seyfert/lib/common/index.js";
 import { Watch, Yuna } from "yunaforseyfert";
 import { inspect } from "util";
-import ms from "ms";
 import { getEmoji } from "#enderbot/utils/functions/functions.js";
 import { EnviromentKeys } from "#enderbot/utils/constants/Constants.js";
 import { Categories } from "#enderbot/types";
+import ms from "ms";
+
 const secretsRegex = /\b(?:client\.(?:config)|config|env|process\.(?:env|exit)|eval|atob|btoa)\b/;
 const concatRegex = /".*?"\s*\+\s*".*?"(?:\s*\+\s*".*?")*/;
 const awaitableRegex = /^(?:\(?)\s*await\b/;
-
 const envRegex = new RegExp(Object.values(EnviromentKeys).map((value) => String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"),"g");
-export const sliceText = (text: string, length: number = 240): string => (text.length > length ? `${text.slice(0, length - 3)}...` : text);
+const sliceText = (text: string, length: number = 240): string => (text.length > length ? `${text.slice(0, length - 3)}...` : text);
+const getInspect = (object: unknown, depth: number = 0): string => inspect(object, { depth });
 
-export const getInspect = (object: unknown, depth: number = 0): string => inspect(object, { depth });
 const options = {
     code: createStringOption({
         description: "Enter some code.",

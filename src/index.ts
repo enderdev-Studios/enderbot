@@ -12,18 +12,11 @@ Logger.dirname = "logs";
 
 export const client = new enderbot();
 
-client.cache.channels!.filter = (
-    channel
-) => {
-    return ![
-        ChannelType.DM,
-        ChannelType.GroupDM
-    ].includes(channel.type);
+client.cache.channels!.filter = (channel) => {
+    return ![ChannelType.DM, ChannelType.GroupDM ].includes(channel.type);
 };
 
 const embed = new Embed().setTitle("enderbot is started!").setDescription("enderbot is now running smoothly.").setColor(client.config.colors.enderbotColor).setTimestamp(new Date()).setFooter({ text: "enderbot" }).setThumbnail("https://enderdev.vercel.app/enderdev.jpg");
-
-
 
 client.webhooks.writeMessage(webhookId, webhookToken, {
     body: { embeds: [embed] },
