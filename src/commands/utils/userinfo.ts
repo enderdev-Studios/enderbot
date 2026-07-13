@@ -1,11 +1,10 @@
-import { AttachmentBuilder, createUserOption, Declare, Embed, Middlewares, Options } from "seyfert";
-import { CommandContext, SubCommand } from "seyfert";
+import { AttachmentBuilder, createUserOption, Declare, Embed, Middlewares, Options, CommandContext, SubCommand  } from "seyfert";
+import { MessageFlags } from "seyfert/lib/types/index.js";
 import { Shortcut, Watch, Yuna } from "yunaforseyfert";
 import { profileImage } from "discord-arts";
 import { UsualColors } from "#enderbot/utils/constants/Constants.js";
-import { MessageFlags } from "seyfert/lib/types/index.js";
-import ms from "ms";
 import { sendMessage } from "#enderbot/utils/functions/functions.js";
+import ms from "ms";
 
 // Define options for the command
 const options = { user: createUserOption({ description: "get a user", required: false, })};

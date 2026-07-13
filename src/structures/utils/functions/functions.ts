@@ -1,7 +1,8 @@
-import chalk from "chalk";
 import { CommandContext, UsingClient } from "seyfert";
 import { SendResolverProps } from "seyfert/lib/common/index.js";
 import { ActivityType, APIInteractionResponseCallbackData, MessageFlags, PresenceUpdateStatus } from "seyfert/lib/types/index.js";
+import chalk from "chalk";
+
 type contentT = Omit<APIInteractionResponseCallbackData, "embeds" | "components" | "poll"> & SendResolverProps;
 // Function to validate hex color codes
 export const HexColor = (hex: string) => typeof hex.toLowerCase() === "string" && hex.toLocaleLowerCase().length === 6 && !isNaN(Number("0x" + hex.toLowerCase()));

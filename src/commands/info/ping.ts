@@ -1,5 +1,5 @@
-import { getEmoji } from "#enderbot/utils/functions/functions.js";
 import { Declare, Command, type CommandContext, Middlewares } from "seyfert";
+import { getEmoji } from "#enderbot/utils/functions/functions.js";
 
 @Declare({
   name: "ping",

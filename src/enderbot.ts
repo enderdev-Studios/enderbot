@@ -1,7 +1,21 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
-import { enderbot } from "#enderbot/client";
+import { ParseClient } from "seyfert";
+import type { enderbot } from "#enderbot/client";
 import { middlewares } from "#enderbot/utils/utils/Middlewares.js";
-import { ParseClient, ParseMiddlewares } from "seyfert";
+
+declare module 'seyfert' {
+	interface SeyfertRegistry { 
+		client: ParseClient<enderbot>; 
+		middlewares: typeof middlewares;
+
+	}
+	interface InternalOptions {
+		withPrefix: true;
+	}
+	interface ExtraProps {
+		category?: Categories;
+		usage?: string;
+	}
+}
 
 
 // Categories 
@@ -17,20 +31,6 @@ export enum Categories {
 }
 // declare
 
-declare module "seyfert" {
-	interface InternalOptions {
-		withPrefix: true;
-	}
-	interface UsingClient extends ParseClient<enderbot> { }
-	// Registrar los middlewares en los tipos de Seyfert
-	interface RegisteredMiddlewares
-		extends ParseMiddlewares<typeof middlewares> { }
-	interface ExtraProps {
-		category?: Categories;
-		usage?: string;
-	}
-	
-}
 
 // enderbot configuration
 

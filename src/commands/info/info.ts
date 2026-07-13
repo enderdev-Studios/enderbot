@@ -1,6 +1,6 @@
-import { GithubRepo } from "#enderbot/utils/constants/Constants.js";
 import { Declare, Command, type CommandContext, Middlewares, Container, Separator, TextDisplay, Thumbnail, Section, Button } from "seyfert";
 import { ButtonStyle, MessageFlags, Spacing } from "seyfert/lib/types/index.js";
+import { GithubRepo } from "#enderbot/utils/constants/Constants.js";
 
 @Declare({
     name: "info",

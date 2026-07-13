@@ -13,7 +13,8 @@ export const typescriptVersion = pack.default.devDependencies.typescript;
 export const bots = [
   "924525977437077515", // <--- endkachu 
   "710034409214181396", // <--- ticket king
-  "416358583220043796" // <--- Xenon
+  "416358583220043796", // <--- Xenon
+  "472911936951156740" // <--- VoiceMaster
 ];
 
 export const UsualColors = {
@@ -50,23 +51,24 @@ export const activity = [
     state: "en un mp3"
   },
   {
-    name: "enderbot",
+    name: "enderbot version",
     type: ActivityType.Custom,
-    state: "Hola soy enderbot!!"
+    state: "Currently work in: " + version
   },
   {
     name: "enderbot",
     type: ActivityType.Custom,
-    state: "Hola a todos como estan como andan?"
+    state: "Hey everyone, what's up?"
   },
   {
-    name: "Viendo cosas",
+    name: "Watching servers",
     type: ActivityType.Watching,
-    state: "la nueva version de enderbot :D"
+    state: "So... I protect some servers"
   },
   {
-    name: "Probando seyfert",
+    name: "seyfert with feith",
     type: ActivityType.Playing,
-    state: "Aventando las manos al fuego"
+    state: "I'm playing with seyfert with fire and feith in i wont stop :D"
   }
 ];
+

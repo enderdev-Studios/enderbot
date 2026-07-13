@@ -1,8 +1,8 @@
-import { AnyContext, Embed, Message, WebhookMessage } from "seyfert";
-import { EmbedColors, PermissionStrings } from "seyfert/lib/common/index.js";
-import { FormatOptionType } from "./Formatters.js";
+import { AnyContext, Embed, Message, WebhookMessage, } from "seyfert";
 import { APIEmbedField, ApplicationCommandOptionType, MessageFlags } from "seyfert/lib/types/index.js";
-import { webhookToken, webhookId } from "../constants/Constants.js";
+import { EmbedColors, PermissionStrings } from "seyfert/lib/common/index.js";
+import { FormatOptionType } from "#enderbot/utils/constants/Formatters.js";
+import { webhookToken, webhookId } from "#enderbot/utils/constants/Constants.js";
 
 interface ObjType { name: string, description: string, type: ApplicationCommandOptionType }
 
@@ -20,8 +20,7 @@ export async function onRunError(ctx: AnyContext, error: unknown) {
         .setDescription(`${String(error).slice(0, 248)}`)
         .setTimestamp();
         
-        ctx.client.logger.error("Error");
-    ctx.client.logger.error(error);
+    ctx.client.logger.error("Error en la ejecución \n", error as Error);
     await ctx.write({ embeds: [embed] });
     return ctx.client.webhooks.writeMessage(webhookId, webhookToken, {
         body: { embeds: [embedError] },
@@ -81,12 +80,7 @@ export async function onBotPermissionsFail(ctx: AnyContext, permissions: Permiss
     .setThumbnail(ctx.client.me.avatarURL({extension: "png", forceStatic: true}))
     .setDescription("Me faltan unos permisos")
     .setColor(ctx.client.config.colors.errorColor)
-    .setFields([
-        {
-            name: "### Te faltan estos Permisos",
-            value: permissions.toLocaleString()
-        }
-    ]);
+    .setFields([ { name: "### Te faltan estos Permisos", value: permissions.toLocaleString() } ]);
 
     await ctx.write({ embeds: [embed], flags: MessageFlags.Ephemeral });
 }
