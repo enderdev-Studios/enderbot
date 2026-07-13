@@ -1,8 +1,8 @@
 import { config } from "seyfert";
 process.loadEnvFile(".env");
 
-const token = process.env.token;
-const applicationId = process.env.appID;
+const token = String(process.env.token);
+const applicationId = String(process.env.appID);
 const dir = process.argv[1].includes("dist") ? "dist" : "src";
 
 if (!token) throw new Error("No pusiste el token");

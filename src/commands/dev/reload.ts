@@ -1,4 +1,4 @@
-import { Command, CommandContext, createStringOption, Declare, Message, Middlewares, Options } from "seyfert";
+import { Command, CommandContext, createStringOption, Declare, Middlewares, Options } from "seyfert";
 import { Watch, Yuna } from "yunaforseyfert";
 import { Categories } from "#enderbot/types";
 import ms from "ms";
@@ -49,8 +49,8 @@ export default class SayCommand extends Command {
             default:
                 return ctx.write({ content: "debes escoger una opcion : commands, events" });
         }
-        ctx.write({ embeds: [{ title: `Recargando ${option}`, description: "<:dino_ryo:1325620344459104372> Recargando", color: ctx.client.config.colors.enderbotColor }] }).then(async m => {
-            (m as Message).edit({ embeds: [{ title: "Reload command", description: `<:dino_ryo:1325620344459104372> ${option}, Cargados`, color: ctx.client.config.colors.enderbotColor }] });
-        });
+        await ctx.write({ embeds: [{ title: `Recargando ${option}`, description: "<:dino_ryo:1325620344459104372> Recargando", color: ctx.client.config.colors.enderbotColor }] });
+        await ctx.editResponse({ embeds: [{ title: "Reload command", description: `<:dino_ryo:1325620344459104372> ${option}, Cargados`, color: ctx.client.config.colors.enderbotColor }] });
+    
     }
 }

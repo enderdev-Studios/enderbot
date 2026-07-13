@@ -49,7 +49,7 @@ function crossPostMessage({ crossPostData, message, channel }) {
 async function HoneyPotChannel({ message }: { message: Message }) {
     if (message.channelId === "1518593420711432326") {
         try {
-            message.member?.ban({ delete_message_seconds: 60 * 60 * 24 * 7 }, "HoneyPot Channel");
+            message.member?.ban({ deleteMessageSeconds: 60 * 60 * 24 * 7, reason: "HoneyPot Channel" });
             const messageToEdit = await message.client.messages.fetch("1518719940058939574", "1518593420711432326", true);
             const number = Number(messageToEdit.content.match(/\d+/g)?.[0]) || 0;
             await message.client.messages.edit(messageToEdit.id, "1518593420711432326", { content: `Bots Banned: ${number + 1}` });

@@ -37,7 +37,7 @@ export default class BanCommand extends SubCommand {
     const member = await (await ctx.guild())?.members.fetch(user.id);
 
     try {
-      member?.ban({ delete_message_seconds: 3000 }, reason);
+      member?.ban({ deleteMessageSeconds: 3000, reason });
       if (time !== "perma") {
         setTimeout(async () => {
           (await (await ctx.guild())?.members)?.unban(user.id);
