@@ -1,4 +1,5 @@
 import { Declare, SubCommand, type CommandContext, Middlewares, Options, createRoleOption, createChannelOption } from "seyfert";
+import { Categories } from "#enderbot/types";
 const options = {
     tag: createRoleOption({
         description: "Member Options",
@@ -12,7 +13,11 @@ const options = {
 @Declare({
     name: "autotag",
     description: "Configura los canales de autotag",
-    integrationTypes: ["GuildInstall"]
+    integrationTypes: ["GuildInstall"],
+    props: {
+        category: Categories.config,
+        usage: "autotag -tag <tag> -channel <channel>"
+    }
 })
 @Middlewares(["CheckBots"])
 @Options(options)

@@ -1,9 +1,10 @@
 import { type CommandContext, Declare, SubCommand,Options, TextGuildChannel,createIntegerOption,Middlewares, Embed,} from "seyfert";
 import { Shortcut, Watch, Yuna } from "yunaforseyfert";
 import ms from "ms";
+import { Categories } from "#enderbot/types";
 
 const options = {
-    cantidad: createIntegerOption({
+    count: createIntegerOption({
         description: "get a a category",
         required: true
     })
@@ -13,7 +14,11 @@ const options = {
     description: "Borrar mensajes",
     defaultMemberPermissions: ["ModerateMembers"],
     botPermissions: ["ModerateMembers"],
-    integrationTypes: ["GuildInstall"]
+    integrationTypes: ["GuildInstall"],
+    props: {
+    category: Categories.mod,
+    usage: "clear -count <count>"
+  }
 })
 @Options(options)
 @Middlewares(["CheckBots"])
@@ -25,7 +30,7 @@ export default class ClearCommand extends SubCommand {
     })
     override async run(ctx: CommandContext<typeof options>) {
         try {
-            const cantidad = ctx.options.cantidad; const id = ctx.channelId; const guild = await ctx.guild();
+            const cantidad = ctx.options.count; const id = ctx.channelId; const guild = await ctx.guild();
             const channel = await guild?.channels.fetch(id);
             if (!(channel instanceof TextGuildChannel)) return;
             const embederror = new Embed().setTitle("Cantidad Excedida").setDescription("No se pueden borrar más de 99 mensajes a la vez.").setColor(ctx.client.config.colors.enderbotColor);

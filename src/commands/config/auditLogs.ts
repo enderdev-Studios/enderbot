@@ -1,4 +1,5 @@
 import { Declare, SubCommand, type CommandContext, Middlewares, createChannelOption, Options } from "seyfert";
+import { Categories } from "#enderbot/types";
 const options = {
     channel: createChannelOption({
         description: "Channel Options",
@@ -8,7 +9,11 @@ const options = {
 @Declare({
     name: "auditlog",
     description: "configuracion de los auditlogs",
-    integrationTypes: ["GuildInstall"]
+    integrationTypes: ["GuildInstall"],
+    props: {
+        category: Categories.config,
+        usage: "auditlog -channel <channel>"
+    }
 })
 @Middlewares(["CheckBots"])
 @Options(options)

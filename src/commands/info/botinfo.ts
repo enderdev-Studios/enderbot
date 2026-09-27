@@ -1,11 +1,16 @@
 import { Declare, Command, type CommandContext, Middlewares, Container, Separator, TextDisplay, Thumbnail, Section, Button } from "seyfert";
 import { ButtonStyle, MessageFlags, Spacing } from "seyfert/lib/types/index.js";
 import { GithubRepo } from "#enderbot/utils/constants/Constants.js";
+import { Categories } from "#enderbot/types";
 
 @Declare({
-    name: "info",
+    name: "botinfo",
     description: "Informacion sobre mi",
-    integrationTypes: ["GuildInstall"]
+    integrationTypes: ["GuildInstall"],
+    props: {
+    category: Categories.info,
+    usage: "botinfo"
+    }
 })
 @Middlewares(["CheckBots"])
 export default class InfoCommand extends Command {

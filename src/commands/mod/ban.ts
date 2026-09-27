@@ -1,6 +1,7 @@
 import { SubCommand, type CommandContext,  createStringOption, createUserOption, Declare, Middlewares, Options } from "seyfert";
-import { Watch, Yuna } from "yunaforseyfert";
+ 
 import ms from "ms";
+import { Categories } from "#enderbot/types";
 
 const options = {
   user: createUserOption({ description: "get a user", required: true }),
@@ -11,17 +12,15 @@ const options = {
   name: "ban",
   description: "ban user",
   defaultMemberPermissions: ["BanMembers"],
-  integrationTypes: ["GuildInstall"]
+  integrationTypes: ["GuildInstall"],
+  props: {
+    category: Categories.mod,
+    usage: "ban -user <user> -time <time> -reason <reason>"
+  }
 })
 @Options(options)
 @Middlewares(["CheckBots"])
 export default class BanCommand extends SubCommand {
-
-    @Watch({
-      idle: ms("1min"),
-      beforeCreate(ctx) { const watcher = Yuna.watchers.find(ctx.client, { userId: ctx.author.id, command: this }); if (!watcher) return; watcher.stop("Just execute"); },
-    })
-
   override async run(ctx: CommandContext<typeof options>) {
     const user = ctx.options.user;
     const tiempo = ctx.options.time || "perma";

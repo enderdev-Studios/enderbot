@@ -1,4 +1,5 @@
 import { Declare, SubCommand, type CommandContext, Middlewares, Options, createChannelOption, createStringOption } from "seyfert";
+import { Categories } from "#enderbot/types";
 const options = {
     channel: createChannelOption({
         description: "Member Options",
@@ -16,7 +17,11 @@ const options = {
 @Declare({
     name: "crosspot",
     description: "Configura los canales de crosspost",
-    integrationTypes: ["GuildInstall"]
+    integrationTypes: ["GuildInstall"],
+    props: {
+        category: Categories.config,
+        usage: "crosspot -channel <channel> -value <value>"
+    }
 })
 @Middlewares(["CheckBots"])
 @Options(options)

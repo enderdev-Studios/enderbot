@@ -1,12 +1,9 @@
 import { Command, type CommandContext, Declare, Embed, Middlewares, Options, createNumberOption, createStringOption, } from "seyfert";
-import { EmbedColors, Formatter } from "seyfert/lib/common/index.js";
-import { Watch, Yuna } from "yunaforseyfert";
+import { Formatter } from "seyfert/lib/common/index.js";
 import { inspect } from "util";
 import { getEmoji } from "#enderbot/utils/functions/functions.js";
 import { EnviromentKeys } from "#enderbot/utils/constants/Constants.js";
 import { Categories } from "#enderbot/types";
-import ms from "ms";
-
 const secretsRegex = /\b(?:client\.(?:config)|config|env|process\.(?:env|exit)|eval|atob|btoa)\b/;
 const concatRegex = /".*?"\s*\+\s*".*?"(?:\s*\+\s*".*?")*/;
 const awaitableRegex = /^(?:\(?)\s*await\b/;
@@ -34,24 +31,12 @@ const options = {
     contexts: ["Guild"],
     props: {
     category: Categories.dev,
-    usage: "eval <code>"
+    usage: "eval -code <code> -depth <depth>"
   }
 })
 @Options(options)
 @Middlewares(["Onlydev", "CheckBots"])
 export default class EvalCommand extends Command {
-    @Watch({
-        idle: ms("1min"),
-        beforeCreate(ctx): void {
-            const watcher = Yuna.watchers.find(ctx.client, { userId: ctx.author.id, command: this, channelId: ctx.channelId });
-            if (!watcher) return;
-
-            watcher.stop("Another instance running.");
-        },
-        onStop(reason): void {
-            this.ctx?.editOrReply({ embeds: [{ description: `Watcher ended by:  \`${reason}\``, color: EmbedColors.White, }] });
-        },
-    })
     override async run(ctx: CommandContext<typeof options>) {
         
         // Definitions        

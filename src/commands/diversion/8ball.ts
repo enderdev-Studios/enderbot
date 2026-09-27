@@ -1,5 +1,5 @@
 import { type CommandContext, Declare, Command, Options, createStringOption, Embed, Middlewares, } from "seyfert";
-import { Watch, Yuna } from "yunaforseyfert";
+ 
 import { Categories } from "#enderbot/types";
 import { sendMessage } from "#enderbot/utils/functions/functions.js";
 import ms from "ms";
@@ -12,17 +12,13 @@ const options = { question: createStringOption({ description: "the question to a
     description: "Prueba tu suerte",
     integrationTypes: ["GuildInstall", "UserInstall"],
     props: {
-        usage: "e?8ball {pregunta}",
+        usage: "8ball -question <question>",
         category: Categories.fun
     }
 })
 @Options(options)
 @Middlewares(["CheckBots"])
-export default class BallCommand extends Command {
-    @Watch({
-        idle: ms("1min"),
-        beforeCreate(ctx) { const watcher = Yuna.watchers.find(ctx.client, { userId: ctx.author.id, command: this }); if (!watcher) return; watcher.stop("Just execute"); },
-    })
+export default class BallCommand extends Command { 
     override async run(ctx: CommandContext<typeof options>) {
         // Get the question from options
         const question = ctx.options.question;

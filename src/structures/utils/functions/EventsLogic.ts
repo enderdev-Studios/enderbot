@@ -1,5 +1,6 @@
 import { Message } from "seyfert";
 import { ConfigFlags } from "#enderbot/utils/constants/ConfigFlags.js";
+import { enderbot } from "#enderbot/client";
 
 export {
     antilinkFilter,
@@ -23,12 +24,12 @@ async function antilinkFilter({ guildData, antilinkData, message, client }) {
     message.write({ content: "Hola por favor no mandes links" }).then(m => { globalThis.setTimeout(async () => { await m.delete(); }, 4000); });
     await message.delete();
 }
-function mentionMessage({ guildData, message, client }) {
-    if (!guildData) return;
-    // Mention Message 
+function mentionMessage({ guildData, message, client }: {guildData: any, message: Message, client: enderbot }) {
+    let flagMessage;
+    if (message.author.bot) return 0;
     if (message.content.startsWith(`<@${client.me.id}>`)) {
-        if (!(guildData.config & ConfigFlags.MentionBot)) return 0;
-        if (message.author.bot) return 0;
+        flagMessage = !guildData ? true : guildData.config & ConfigFlags.MentionBot;
+        if (flagMessage) return;
         message.reply({ content: `hola este es mi prefix es: ${client.config.prefix.join(", ")}` });
     }
 
@@ -43,7 +44,6 @@ function crossPostMessage({ crossPostData, message, channel }) {
     if (!crossPostData) return;
     if (!crossPostData.channelIds.includes(channel.id) && !channel.isNews()) return;
     message.crosspost();
-
 }
 
 async function HoneyPotChannel({ message }: { message: Message }) {

@@ -1,6 +1,7 @@
 import { type CommandContext, createStringOption, createUserOption, Declare, SubCommand, Options, Middlewares, } from "seyfert";
-import { Watch, Yuna } from "yunaforseyfert";
+ 
 import ms from "ms";
+import { Categories } from "#enderbot/types";
 
 
 const options = {
@@ -12,15 +13,15 @@ const options = {
     name: "timeout",
     description: "timeout user",
     defaultMemberPermissions: ["ModerateMembers"],
-    botPermissions: ["ModerateMembers"]
+    botPermissions: ["ModerateMembers"],
+    props: {
+        category: Categories.mod,
+        usage: "timeout -user <user> -time <time> -reason <reason>"
+    }
 })
 @Options(options)
 @Middlewares(["CheckBots"])
-export default class MuteCommand extends SubCommand {
-    @Watch({
-        idle: ms("1min"),
-        beforeCreate(ctx) { const watcher = Yuna.watchers.find(ctx.client, { userId: ctx.author.id, command: this }); if (!watcher) return; watcher.stop("Just execute"); },
-    })
+export default class MuteCommand extends SubCommand { 
     override async run(ctx: CommandContext<typeof options>) {
         const user = ctx.options.user;
         let tiempo = ctx.options.time || "2m";

@@ -13,9 +13,9 @@ export default createEvent({
 		try {
 			await autoTagMessage({ autoTagData, message, channel });
 			await antilinkFilter({ guildData: ConfigGuildData, antilinkData: AntilinkData, message, client });
-			await mentionMessage({ guildData: ConfigGuildData, message, client });
 			await crossPostMessage({ crossPostData, message, channel });
 			await HoneyPotChannel({ message });
+			await mentionMessage({ guildData: ConfigGuildData, message, client });
 			// Catch errors
 		} catch (error) { client.logger.error(error); }
 	}

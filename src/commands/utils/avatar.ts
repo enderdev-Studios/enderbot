@@ -11,18 +11,14 @@ const options = { user: createUserOption({ description: "get a user" }) }; // De
     description: "obtener el avatar de un usuario",
     integrationTypes: ["GuildInstall", "UserInstall"],
     props: {
-        usage: "e?avatar {usuario}",
-        category: Categories.fun
+        category: Categories.util,
+        usage: "avatar -user <user>"
     }
 })
 @Options(options)
 @Middlewares(["CheckBots"])
 @Shortcut()
-export default class AvatarCommand extends SubCommand {
-    @Watch({
-        idle: ms("1min"),
-        beforeCreate(ctx) { const watcher = Yuna.watchers.find(ctx.client, { userId: ctx.author.id, command: this }); if (!watcher) return; watcher.stop("Just execute"); },
-    }) // Watcher to monitor command usage
+export default class AvatarCommand extends SubCommand {  // Watcher to monitor command usage
     override async run(ctx: CommandContext<typeof options>) {
         const user = ctx.options.user || ctx.member; // Get the user or default to the author
         const embed = new Embed().setTitle(`Avatar de **${user?.globalName}**`).setImage(user?.avatarURL({ size: 1024  })).setColor(ctx.client.config.colors.enderbotColor); // Create embed with avatar

@@ -15,7 +15,6 @@ import { Categories } from "#enderbot/types";
 @Middlewares(["Onlydev", "CheckBots"])
 export default class DevInfoCommand extends Command {
   override async run(ctx: CommandContext) {
-
         const embed = new Embed()
             .setTitle("***Informacion de enderbot***")
             .setThumbnail(ctx.client.me.avatarURL({ forceStatic: true }) as string)

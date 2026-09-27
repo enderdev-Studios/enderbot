@@ -21,7 +21,7 @@ const options = {
   integrationTypes: ["GuildInstall"],
   props:{
     category: Categories.config,
-    usage: "guild <option> <value>",
+    usage: "guild -option <option> -value <value>",
   }
 })
 @Middlewares(["CheckBots"])

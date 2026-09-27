@@ -2,10 +2,15 @@ import { Middlewares, Declare, Embed, CommandContext, SubCommand } from "seyfert
 import { ChannelType, GuildVerificationLevel, MessageFlags } from "seyfert/lib/types/index.js";
 import { Shortcut, Watch, Yuna } from "yunaforseyfert";
 import ms from "ms";
+import { Categories } from "#enderbot/types";
 
 @Declare({
   name: "serverinfo",
   description: "Displays information about the server",
+  props: {
+    category: Categories.util,
+    usage: "serverinfo"
+  },
 })
 @Middlewares(["CheckBots"])
 @Shortcut()
