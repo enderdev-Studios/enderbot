@@ -2,6 +2,7 @@ import { Declare, type CommandContext, Middlewares, createStringOption, Options,
 import { Spacing, MessageFlags, } from "seyfert/lib/types/index.js";
 import { Shortcut } from "yunaforseyfert";
 import { HexColor } from "#enderbot/utils/functions/functions.js";
+import { Categories } from "#enderbot/types";
 
 const options = {
     title: createStringOption({ description: "Escribe el titulo de tu articulo", required: true }),
@@ -13,6 +14,10 @@ const options = {
     name: "article",
     aliases: [],
     description: "Crea un articulo",
+    props: {
+        category: Categories.util,
+        usage: "article -title <title> -text <text> -footer <footer> -color <color>"
+    },
 })
 @Middlewares(["CheckBots"])
 @Options(options)

@@ -5,6 +5,7 @@ import { profileImage } from "discord-arts";
 import { UsualColors } from "#enderbot/utils/constants/Constants.js";
 import { sendMessage } from "#enderbot/utils/functions/functions.js";
 import ms from "ms";
+import { Categories } from "#enderbot/types";
 
 // Define options for the command
 const options = { user: createUserOption({ description: "get a user", required: false, })};
@@ -12,7 +13,11 @@ const options = { user: createUserOption({ description: "get a user", required: 
 @Declare({
     name: "userinfo",
     description: "Información sobre un usario",
-    integrationTypes: ["GuildInstall", "UserInstall"]
+    integrationTypes: ["GuildInstall", "UserInstall"],
+    props: {
+        category: Categories.util,
+        usage: "userinfo -user <user>"
+    }
 })
 @Options(options)
 @Middlewares(["CheckBots"])

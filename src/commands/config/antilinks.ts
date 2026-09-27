@@ -1,4 +1,5 @@
 import { Declare, SubCommand, type CommandContext, Middlewares, Options, createMentionableOption, createStringOption } from "seyfert";
+import { Categories } from "#enderbot/types";
 const options = {
     exception: createMentionableOption({
         description: "Member Options",
@@ -16,7 +17,11 @@ const options = {
 @Declare({
     name: "antilinks",
     description: "Configura las excepciones de antilinks",
-    integrationTypes: ["GuildInstall"]
+    integrationTypes: ["GuildInstall"],
+    props: {
+        category: Categories.config,
+        usage: "antilinks -exception <exception> -value <value>"
+    }
 })
 @Middlewares(["CheckBots"])
 @Options(options)

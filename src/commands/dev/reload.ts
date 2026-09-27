@@ -1,7 +1,5 @@
 import { Command, CommandContext, createStringOption, Declare, Middlewares, Options } from "seyfert";
-import { Watch, Yuna } from "yunaforseyfert";
 import { Categories } from "#enderbot/types";
-import ms from "ms";
 
 export const options = {
     option: createStringOption({
@@ -17,22 +15,12 @@ export const options = {
     integrationTypes: ["GuildInstall"],
     props: {
     category: Categories.dev,
-    usage: "reload <option>"
+    usage: "reload -option <option>"
   }
 })
 @Options(options)
 @Middlewares(["Onlydev", "CheckBots"])
 export default class SayCommand extends Command {
-    @Watch({
-        idle: ms("1min"),
-        beforeCreate(ctx) {
-            const watcher = Yuna.watchers.find(ctx.client, { userId: ctx.author.id, command: this });
-            if (!watcher) return;
-
-            watcher.stop("Just execute");
-        },
-
-    })
     override async run(ctx: CommandContext<typeof options>) {
         const option = ctx.options.option;
         switch (option.toLocaleLowerCase()) {

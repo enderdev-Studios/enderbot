@@ -2,6 +2,7 @@ import { SubCommand, CommandContext, createStringOption, Declare, Middlewares, O
 import { MessageFlags } from "seyfert/lib/types/index.js";
 import { Shortcut, Watch, Yuna } from "yunaforseyfert";
 import ms from "ms";
+import { Categories } from "#enderbot/types";
 
 // Define options for the command
 const options = { text: createStringOption({ description: "El texto que enderbot va a decir", required: true }), };
@@ -10,15 +11,15 @@ const options = { text: createStringOption({ description: "El texto que enderbot
     name: "say",
     description: "has que enderbot diga algo",
     integrationTypes: ["GuildInstall"],
+    props: {
+        category: Categories.util,
+        usage: "say -text <text>"
+    },
 })
 @Options(options)
 @Middlewares(["CheckBots"])
 @Shortcut()
-export default class SayCommand extends SubCommand {
-    @Watch({
-        idle: ms("1min"),
-        beforeCreate(ctx) { const watcher = Yuna.watchers.find(ctx.client, { userId: ctx.author.id, command: this }); if (!watcher) return; watcher.stop("Just execute"); },
-    })
+export default class SayCommand extends SubCommand { 
     override async run(ctx: CommandContext<typeof options>) {
         const texto = ctx.options.text;
 

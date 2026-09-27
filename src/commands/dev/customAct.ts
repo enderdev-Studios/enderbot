@@ -1,9 +1,7 @@
 import { Declare, Command, type CommandContext, createStringOption, Options, Middlewares, createBooleanOption } from "seyfert";
 import { ActivityType } from "seyfert/lib/types/index.js";
-import { Watch, Yuna } from "yunaforseyfert";
 import { setActivity, snap } from "#enderbot/utils/functions/functions.js";
 import { Categories } from "#enderbot/types";
-import ms from "ms";
 
 const options = {
   random: createBooleanOption({
@@ -26,21 +24,12 @@ const options = {
   aliases: ["ca", "custacty"],
   props: {
     category: Categories.dev,
-    usage: "customact <ActivityType> <Name> <State>"
+    usage: "customact -random <random> -type <type> -name <name> -state <state>"
   }
 })
 @Options(options)
 @Middlewares(["Onlydev", "CheckBots"])
 export default class ActivityCommand extends Command {
-  @Watch({
-    idle: ms("1min"),
-    beforeCreate(ctx) {
-      const watcher = Yuna.watchers.find(ctx.client, { userId: ctx.author.id, command: this });
-      if (!watcher) return;
-
-      watcher.stop("Just execute");
-    }
-  })
   override async run(ctx: CommandContext<typeof options>) {
     try {
       const random = ctx.options.random;

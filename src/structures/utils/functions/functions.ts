@@ -17,6 +17,7 @@ export const sendMessage = async (ctx: CommandContext, content: contentT) => {
 export async function getCmds(select, client: UsingClient) {
     const lowerSelect = select.toLowerCase();
     const arrCommands = client.commands.values.filter((command) => command.props.category?.toLowerCase() === lowerSelect).map((cmd) => `- ${cmd.name}`);
+
     if (arrCommands.length === 0) {
         const command = client.commands.values.find((command) => command.name.toLowerCase() === lowerSelect);
         // @ts-expect-error Needed to access options property
