@@ -1,7 +1,6 @@
 import { SubCommand, CommandContext, createStringOption, Declare, Middlewares, Options } from "seyfert";
 import { MessageFlags } from "seyfert/lib/types/index.js";
-import { Shortcut, Watch, Yuna } from "yunaforseyfert";
-import ms from "ms";
+import { Shortcut } from "yunaforseyfert";
 import { Categories } from "#enderbot/types";
 
 // Define options for the command
