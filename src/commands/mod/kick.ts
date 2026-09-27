@@ -1,6 +1,4 @@
 import { type CommandContext,  createStringOption, createUserOption, Declare, Options, SubCommand, Middlewares } from "seyfert";
- 
-import ms from "ms";
 import { Categories } from "#enderbot/types";
 
 const options = {

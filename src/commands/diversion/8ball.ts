@@ -1,8 +1,7 @@
 import { type CommandContext, Declare, Command, Options, createStringOption, Embed, Middlewares, } from "seyfert";
- 
+
 import { Categories } from "#enderbot/types";
 import { sendMessage } from "#enderbot/utils/functions/functions.js";
-import ms from "ms";
 
 // Define options for the command
 const options = { question: createStringOption({ description: "the question to ask the 8ball", required: true }) };
